@@ -1,9 +1,11 @@
+import {DECREMENT, INCREMENT} from "./const";
+
 export  default function CountReducer(pre=0, action) {
     const {type, value} = action;
     switch (type) {
-        case 'increment':
+        case INCREMENT:
             return pre + value;
-        case 'decrement':
+        case DECREMENT:
             return pre - value;
         default:
             return pre;
