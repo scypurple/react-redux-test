@@ -1,33 +1,29 @@
 import React, {useRef} from 'react';
-import store from "../../redux/store";
-import {Increment, Decrement} from "../../redux/count_action";
 
-function Demo() {
+function Demo(props) {
+    console.log(props);
     //const [sum, setSum] = useState(0);
     const selectRef = useRef(null);
     // const increment = () => setSum(sum + +selectRef.current.value);
     // const decrement = () => setSum(sum - +selectRef.current.value);
     const increment = () => {
         const value = +selectRef.current.value;
-        store.dispatch(Increment(value));
+        props.increment(value);
     }
     const decrement = () => {
        const value = +selectRef.current.value;
-       store.dispatch(Decrement(value));
+       props.decrement(value);
     };
     const incrementIfOdd = () => {
         const value = +selectRef.current.value;
-        if (store.getState() % 2) {
-            store.dispatch(Increment(value));
-        }
+        if (props.sum % 2) props.increment(value);
     };
     const incrementAsync = () => {
         const value = +selectRef.current.value;
-        setTimeout(() =>
-            store.dispatch(Increment(value)), 2000);
+        props.incrementAsync(value, 500);
     };
     return (<>
-            <input type="text" readOnly value={store.getState()}/><br/>
+            <input type="text" readOnly value={props.sum} /><br/>
             <select ref={selectRef}>
                 <option value="1">1</option>
                 <option value="2">2</option>
