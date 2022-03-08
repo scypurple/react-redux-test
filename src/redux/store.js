@@ -1,7 +1,8 @@
 // redux 核心 store对象
 import {createStore, applyMiddleware} from 'redux';
-import CountReducer from './count_reducer';
 import thunk from 'redux-thunk';
+import {composeWithDevTools} from "redux-devtools-extension";
+import reducers from "./reducers";
 
-const store = createStore(CountReducer, applyMiddleware(thunk));
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 export default store;
